@@ -1,0 +1,27 @@
+# Render Blueprint pentru API (Node.js + Express).
+# Dacă folderul "server" e într-un repo împreună cu "client", decomentează rootDir.
+services:
+  - type: web
+    name: cmv-server
+    runtime: node
+    plan: free
+    # rootDir: server
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Render pune serverul în spatele unui proxy: așa vede IP-ul real al vizitatorilor
+      - key: TRUST_PROXY
+        value: "1"
+      # adresa site-ului de pe Netlify (ex. https://cmv-ineu.netlify.app); se completează în Render
+      - key: CLIENT_ORIGIN
+        sync: false
+      # baza de date MySQL de pe Clever Cloud: copiază MYSQL_ADDON_URI din pagina add-on-ului
+      - key: DATABASE_URL
+        sync: false
+      - key: MAX_UPLOAD_MB
+        value: "10"
+      - key: DB_POOL
+        value: "4"

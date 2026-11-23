@@ -1,0 +1,24 @@
+{
+  "name": "cmv-server",
+  "version": "2.0.0",
+  "private": true,
+  "description": "API pentru site-ul Colegiului „Mihai Viteazul” Ineu (Node.js + Express + MySQL)",
+  "type": "module",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js --serve-client",
+    "populate": "node scripts/populate.js --yes"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "fast-xml-parser": "^4.5.0",
+    "multer": "^2.0.0",
+    "mysql2": "^3.11.0"
+  }
+}
